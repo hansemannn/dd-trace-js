@@ -21,6 +21,7 @@ const PROCESS_ID = constants.PROCESS_ID
 const ERROR_MESSAGE = constants.ERROR_MESSAGE
 const ERROR_STACK = constants.ERROR_STACK
 const ERROR_TYPE = constants.ERROR_TYPE
+const ERROR_CAUSE = constants.ERROR_CAUSE
 
 const map = {
   'service.name': 'service',
@@ -96,6 +97,7 @@ function extractTags (trace, span) {
       case ERROR_TYPE:
       case ERROR_MESSAGE:
       case ERROR_STACK:
+      case ERROR_CAUSE:
         // HACK: remove when implemented in the backend
         if (context._name !== 'fs.operation') {
           trace.error = 1
@@ -150,6 +152,7 @@ function extractError (trace, error) {
     addTag(trace.meta, trace.metrics, ERROR_MESSAGE, error.message || error.code)
     addTag(trace.meta, trace.metrics, ERROR_TYPE, error.name)
     addTag(trace.meta, trace.metrics, ERROR_STACK, error.stack)
+    addTag(trace.meta, trace.metrics, ERROR_CAUSE, error.cause)
   }
 }
 

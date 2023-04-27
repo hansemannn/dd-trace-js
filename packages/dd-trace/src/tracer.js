@@ -6,7 +6,7 @@ const Scope = require('./scope')
 const { storage } = require('../../datadog-core')
 const { isError } = require('./util')
 const { setStartupLogConfig } = require('./startup-log')
-const { ERROR_MESSAGE, ERROR_TYPE, ERROR_STACK } = require('../../dd-trace/src/constants')
+const { ERROR_MESSAGE, ERROR_TYPE, ERROR_STACK, ERROR_CAUSE } = require('../../dd-trace/src/constants')
 
 const SPAN_TYPE = tags.SPAN_TYPE
 const RESOURCE_NAME = tags.RESOURCE_NAME
@@ -130,7 +130,8 @@ function addError (span, error) {
     span.addTags({
       [ERROR_TYPE]: error.name,
       [ERROR_MESSAGE]: error.message,
-      [ERROR_STACK]: error.stack
+      [ERROR_STACK]: error.stack,
+      [ERROR_CAUSE]: error.cause
     })
   }
 }

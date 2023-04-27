@@ -24,6 +24,7 @@ module.exports = {
   ERROR_TYPE: 'error.type',
   ERROR_MESSAGE: 'error.message',
   ERROR_STACK: 'error.stack',
+  ERROR_CAUSE: 'error.cause',
   COMPONENT: 'component',
   CLIENT_PORT_KEY: 'network.destination.port'
 }
