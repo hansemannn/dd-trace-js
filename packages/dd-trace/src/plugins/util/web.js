@@ -9,7 +9,7 @@ const types = require('../../../../../ext/types')
 const kinds = require('../../../../../ext/kinds')
 const urlFilter = require('./urlfilter')
 const { extractIp } = require('./ip_extractor')
-const { ERROR_MESSAGE, ERROR_TYPE, ERROR_STACK } = require('../../constants')
+const { ERROR_MESSAGE, ERROR_TYPE, ERROR_STACK, ERROR_CAUSE } = require('../../constants')
 
 const WEB = types.WEB
 const SERVER = kinds.SERVER
@@ -193,7 +193,8 @@ const web = {
         span.addTags({
           [ERROR_TYPE]: error.name,
           [ERROR_MESSAGE]: error.message,
-          [ERROR_STACK]: error.stack
+          [ERROR_STACK]: error.stack,
+          [ERROR_CAUSE]: error.cause
         })
       }
 
